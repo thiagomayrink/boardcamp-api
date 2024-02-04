@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class CustomerDTO {
-    @NotBlank(message = "name is mandatory and must not be less then 2 letters")
-    @Size(min = 2)
+    @NotBlank(message = "name is mandatory and must be greater then 2 letters")
+    @Size(min = 2, message = "name must be greater then 2 letters")
     private String name;
 
     @Size(min = 11, max = 11, message = "CPF must be only numbers and max 11 digits")
