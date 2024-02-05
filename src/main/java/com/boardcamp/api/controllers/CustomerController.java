@@ -8,12 +8,14 @@ import com.boardcamp.api.models.CustomerModel;
 import com.boardcamp.api.services.CustomerService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("api/customers")
@@ -30,4 +32,12 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.create(body), new HttpHeaders(),
                 HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerModel> getCustomerById(
+            @PathVariable("id") @NotNull Long customerId) {
+        return new ResponseEntity<>(customerService.findById(customerId), new HttpHeaders(),
+                HttpStatus.OK);
+    }
+
 }
