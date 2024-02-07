@@ -31,4 +31,11 @@ public class GlobalExceptionHandler {
             CustomerAlreadyExistsException exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
+
+    // Game
+    @ExceptionHandler({GameAlreadyExistsException.class})
+    public ResponseEntity<String> handleGameAlreadyExists(GameAlreadyExistsException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+    }
+
 }
