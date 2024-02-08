@@ -15,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("api/rentals")
@@ -37,4 +40,8 @@ public class RentController {
         return new ResponseEntity<>(rentService.listAll(), new HttpHeaders(), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}/return")
+    public ResponseEntity<RentModel> finishRent(@PathVariable Long id) {
+        return new ResponseEntity<>(rentService.finish(id), new HttpHeaders(), HttpStatus.OK);
+    }
 }

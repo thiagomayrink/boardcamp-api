@@ -47,4 +47,16 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleGameNotAvailable(GameNotAvailableException exception) {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
     }
+
+    // Rent
+    @ExceptionHandler({RentNotFoundException.class})
+    public ResponseEntity<String> handleRentNotFound(RentNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({RentAlreadyFinishedException.class})
+    public ResponseEntity<String> handleRentAlreadyFinished(
+            RentAlreadyFinishedException exception) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+    }
 }
