@@ -38,4 +38,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 
+    @ExceptionHandler({GameNotFoundException.class})
+    public ResponseEntity<String> handleGameNotFoundExists(GameNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({GameNotAvailableException.class})
+    public ResponseEntity<String> handleGameNotAvailableExists(
+            GameNotAvailableException exception) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
+    }
+
 }
