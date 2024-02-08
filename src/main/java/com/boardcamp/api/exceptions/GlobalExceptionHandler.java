@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     // DTO Validations
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidArgument(
+    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(
             MethodArgumentNotValidException exception) {
         Map<String, String> map = new HashMap<>();
         exception.getBindingResult().getFieldErrors().forEach(
@@ -39,14 +39,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({GameNotFoundException.class})
-    public ResponseEntity<String> handleGameNotFoundExists(GameNotFoundException exception) {
+    public ResponseEntity<String> handleGameNotFound(GameNotFoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
 
     @ExceptionHandler({GameNotAvailableException.class})
-    public ResponseEntity<String> handleGameNotAvailableExists(
-            GameNotAvailableException exception) {
+    public ResponseEntity<String> handleGameNotAvailable(GameNotAvailableException exception) {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
     }
-
 }
