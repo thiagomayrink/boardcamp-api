@@ -4,8 +4,7 @@
 
 
 ## Deploy URL:
-// TODO alterar para URL correta após o deploy
-[https://github.com/thiagomayrink/boardcamp-api](https://github.com/thiagomayrink/boardcamp-api)
+[https://boardcamp-api-rg71.onrender.com](https://boardcamp-api-rg71.onrender.com)
 
 ## Rotas:
 As rotas podem ser importadas para o thunder client atráves das collections localizadas na pasta: [.api-collections](https://github.com/thiagomayrink/boardcamp/tree/main/.api-collections) localizada na raíz do projeto.
@@ -29,4 +28,10 @@ Existem várias formas de executar um app Spring Boot localmente. Uma delas é a
 
 ```shell
 mvn spring-boot:run
+```
+
+## Executando a testes local
+
+```shell
+mvn test
 ```

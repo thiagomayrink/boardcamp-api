@@ -1,0 +1,144 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Boardcamp - java",
+    "dateExported": "2024-02-08T02:21:01.800Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "811bda90-9edc-4954-9ffb-679f33ae4ac2",
+            "name": "customers",
+            "containerId": "",
+            "created": "2024-02-07T01:32:44.663Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "54fab7bd-f8df-4d8b-acfb-1030c3fa4c8b",
+            "name": "games",
+            "containerId": "",
+            "created": "2024-02-07T01:32:54.246Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "a7b5d48b-fc14-4537-ab48-9163b5d0280e",
+            "name": "rentals",
+            "containerId": "",
+            "created": "2024-02-08T01:31:31.953Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "60241fe4-8a5a-4977-ae6c-d56a22acb768",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "811bda90-9edc-4954-9ffb-679f33ae4ac2",
+            "name": "getCustomerById",
+            "url": "http://localhost:8080/api/customers/1",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-04T21:51:06.495Z",
+            "modified": "2024-02-08T02:20:49.314Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3f6d1c1f-718c-4460-b84c-bf911171ded1",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "811bda90-9edc-4954-9ffb-679f33ae4ac2",
+            "name": "createCustomer",
+            "url": "http://localhost:8080/api/customers",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-04T21:49:43.851Z",
+            "modified": "2024-02-08T02:20:48.402Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Jose silva\",\n  \"cpf\": \"01234567890\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "165f12da-4d78-4891-b651-cbf3b725cf75",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "54fab7bd-f8df-4d8b-acfb-1030c3fa4c8b",
+            "name": "listGames",
+            "url": "http://localhost:8080/api/games",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-02-07T01:33:24.871Z",
+            "modified": "2024-02-07T01:33:33.120Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7b2aba73-75ee-4e82-a613-5e7ef21f8ff2",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "54fab7bd-f8df-4d8b-acfb-1030c3fa4c8b",
+            "name": "createGame",
+            "url": "http://localhost:8080/api/games",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-02-07T01:33:41.100Z",
+            "modified": "2024-02-07T01:35:41.469Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"name\": \"Banco Imobiliário\",\r\n  \"image\": \"http://www.imagem.com.br/banco_imobiliario.jpg\",\r\n  \"stockTotal\": 3,\r\n  \"pricePerDay\": 1500\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "10ddfd0e-164c-44f4-98c4-f7cecbce472d",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "a7b5d48b-fc14-4537-ab48-9163b5d0280e",
+            "name": "createRental",
+            "url": "http://localhost:8080/api/rentals",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-02-08T01:31:44.327Z",
+            "modified": "2024-02-08T01:35:48.907Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"customerId\": 1,\r\n  \"gameId\": 1,\r\n  \"daysRented\": 1\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8e316e97-83ff-4b50-babd-94f3b5f1d22d",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "a7b5d48b-fc14-4537-ab48-9163b5d0280e",
+            "name": "finishRental",
+            "url": "http://localhost:8080/api/rentals/1/return",
+            "method": "PUT",
+            "sortNum": 65000,
+            "created": "2024-02-08T02:04:56.314Z",
+            "modified": "2024-02-08T02:09:42.938Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "758792b2-47a9-46a1-961e-f8af36382327",
+            "colId": "e0fbd394-7dd7-4e14-8393-c47f60bab83e",
+            "containerId": "a7b5d48b-fc14-4537-ab48-9163b5d0280e",
+            "name": "listRentals",
+            "url": "http://localhost:8080/api/rentals",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-02-08T01:33:17.098Z",
+            "modified": "2024-02-08T02:09:45.572Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
