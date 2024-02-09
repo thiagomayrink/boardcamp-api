@@ -33,6 +33,21 @@ class CustomerServiceIT {
     }
 
     @Test
+    void givenValidCustomer_whenCreatingCustomer_thenCreatesCustomer() {
+        // given
+        CustomerDTO customerDto = new CustomerDTO("Customer name", "01234567890");
+        HttpEntity<CustomerDTO> body = new HttpEntity<>(customerDto);
+
+        // when
+        ResponseEntity<CustomerModel> response =
+                restTemplate.exchange("/api/customers", HttpMethod.POST, body, CustomerModel.class);
+
+        // then
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(1, customerRepository.count());
+    }
+
+    @Test
     void givenRepeatedCustomerCpf_whenCreatingCustomer_thenThrowsError() {
         // given
         CustomerModel customerConflict = new CustomerModel(1L, "Customer name", "01234567890");
@@ -65,17 +80,32 @@ class CustomerServiceIT {
     }
 
     @Test
-    void givenValidCustomer_whenCreatingCustomer_thenCreatesCustomer() {
+    void givenInvalidCustomerCpf_whenCreatingCustomer_thenThrowsError() {
         // given
-        CustomerDTO customerDto = new CustomerDTO("Customer name", "01234567890");
+        CustomerDTO customerDto = new CustomerDTO("Customer name", "");
         HttpEntity<CustomerDTO> body = new HttpEntity<>(customerDto);
 
         // when
-        ResponseEntity<CustomerModel> response =
-                restTemplate.exchange("/api/customers", HttpMethod.POST, body, CustomerModel.class);
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/customers", HttpMethod.POST, body, String.class);
 
         // then
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(1, customerRepository.count());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(0, customerRepository.count());
+    }
+
+    @Test
+    void givenInvalidCustomerName_whenCreatingCustomer_thenThrowsError() {
+        // given
+        CustomerDTO customerDto = new CustomerDTO("", "01234567890");
+        HttpEntity<CustomerDTO> body = new HttpEntity<>(customerDto);
+
+        // when
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/customers", HttpMethod.POST, body, String.class);
+
+        // then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(0, customerRepository.count());
     }
 }

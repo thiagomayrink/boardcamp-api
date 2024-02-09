@@ -30,24 +30,6 @@ class GameServiceUnitTests {
     private GameRepository GameRepository;
 
     @Test
-    void givenRepeatedGameName_whenCreatingGame_thenThrowsError() {
-        // given
-        GameDTO GameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, 100);
-
-        doReturn(true).when(GameRepository).existsByName(any());
-
-        // when
-        GameAlreadyExistsException exception =
-                assertThrows(GameAlreadyExistsException.class, () -> gameService.create(GameDto));
-
-        // then
-        assertNotNull(exception);
-        assertEquals("Game already exists", exception.getMessage());
-        verify(GameRepository, times(0)).save(any());
-        verify(GameRepository, times(1)).existsByName(any());
-    }
-
-    @Test
     void givenValidGame_whenCreatingGame_thenCreatesGame() {
         // given
         GameDTO GameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, 100);
@@ -64,6 +46,24 @@ class GameServiceUnitTests {
         verify(GameRepository, times(1)).existsByName(any());
         verify(GameRepository, times(1)).save(any());
         assertEquals(newGame, result);
+    }
+
+    @Test
+    void givenRepeatedGameName_whenCreatingGame_thenThrowsError() {
+        // given
+        GameDTO GameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, 100);
+
+        doReturn(true).when(GameRepository).existsByName(any());
+
+        // when
+        GameAlreadyExistsException exception =
+                assertThrows(GameAlreadyExistsException.class, () -> gameService.create(GameDto));
+
+        // then
+        assertNotNull(exception);
+        assertEquals("Game already exists", exception.getMessage());
+        verify(GameRepository, times(0)).save(any());
+        verify(GameRepository, times(1)).existsByName(any());
     }
 
     @Test

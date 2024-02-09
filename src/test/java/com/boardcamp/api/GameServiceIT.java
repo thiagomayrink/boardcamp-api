@@ -33,6 +33,21 @@ class GameServiceIT {
     }
 
     @Test
+    void givenValidGame_whenCreatingGame_thenCreatesGame() {
+        // given
+        GameDTO gameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, 100);
+        HttpEntity<GameDTO> body = new HttpEntity<>(gameDto);
+
+        // when
+        ResponseEntity<GameModel> response =
+                restTemplate.exchange("/api/games", HttpMethod.POST, body, GameModel.class);
+
+        // then
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(1, gameRepository.count());
+    }
+
+    @Test
     void givenRepeatedGameName_whenCreatingGame_thenThrowsError() {
         // given
         GameModel gameConflict = new GameModel(1L, "GAME_NAME", "https://image-url.com", 1, 100);
@@ -51,17 +66,47 @@ class GameServiceIT {
     }
 
     @Test
-    void givenValidGame_whenCreatingGame_thenCreatesGame() {
+    void givenInvalidGameName_whenCreatingGame_thenThrowsError() {
         // given
-        GameDTO gameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, 100);
+        GameDTO gameDto = new GameDTO("", "https://image-url.com", 1, 100);
         HttpEntity<GameDTO> body = new HttpEntity<>(gameDto);
 
         // when
-        ResponseEntity<GameModel> response =
-                restTemplate.exchange("/api/games", HttpMethod.POST, body, GameModel.class);
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/games", HttpMethod.POST, body, String.class);
 
         // then
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertEquals(1, gameRepository.count());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(0, gameRepository.count());
+    }
+
+    @Test
+    void givenInvalidStockTotal_whenCreatingGame_thenThrowsError() {
+        // given
+        GameDTO gameDto = new GameDTO("GAME_NAME", "https://image-url.com", -1, 100);
+        HttpEntity<GameDTO> body = new HttpEntity<>(gameDto);
+
+        // when
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/games", HttpMethod.POST, body, String.class);
+
+        // then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(0, gameRepository.count());
+    }
+
+    @Test
+    void givenInvalidPricePerDay_whenCreatingGame_thenThrowsError() {
+        // given
+        GameDTO gameDto = new GameDTO("GAME_NAME", "https://image-url.com", 1, -100);
+        HttpEntity<GameDTO> body = new HttpEntity<>(gameDto);
+
+        // when
+        ResponseEntity<String> response =
+                restTemplate.exchange("/api/games", HttpMethod.POST, body, String.class);
+
+        // then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(0, gameRepository.count());
     }
 }
