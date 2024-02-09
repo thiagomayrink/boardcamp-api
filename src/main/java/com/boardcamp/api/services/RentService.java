@@ -76,7 +76,9 @@ public class RentService {
         rent.setReturnDate(LocalDate.now());
 
         Period period = Period.between(rent.getRentDate(), rent.getReturnDate());
-        int daysOverdue = period.getDays() > 0 ? period.getDays() : 0;
+        int daysOverdue = period.getDays() - rent.getDaysRented() > 0
+                ? period.getDays() - rent.getDaysRented()
+                : 0;
 
         rent.setDelayFee(daysOverdue * rent.getGame().getPricePerDay());
         return rentRepository.save(rent);
