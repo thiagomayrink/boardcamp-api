@@ -7,7 +7,7 @@
 [https://boardcamp-api-rg71.onrender.com](https://boardcamp-api-rg71.onrender.com)
 
 ## Rotas:
-As rotas podem ser importadas para o thunder client atráves das collections localizadas na pasta: [.api-collections](https://github.com/thiagomayrink/boardcamp-api/tree/main/.api-collections) localizada na raíz do projeto.
+As rotas podem ser importadas para o thunder client atráves das collections localizadas na pasta: [.api-collections](https://github.com/thiagomayrink/boardcamp-api/tree/main/.colections) localizada na raíz do projeto.
 
 ## Executando o projeto local:
 
