@@ -7,7 +7,7 @@
 [https://boardcamp-api-rg71.onrender.com](https://boardcamp-api-rg71.onrender.com)
 
 ## Rotas:
-As rotas podem ser importadas para o thunder client atráves das collections localizadas na pasta: [.api-collections](https://github.com/thiagomayrink/boardcamp/tree/main/.api-collections) localizada na raíz do projeto.
+As rotas podem ser importadas para o thunder client atráves das collections localizadas na pasta: [.api-collections](https://github.com/thiagomayrink/boardcamp-api/tree/main/.api-collections) localizada na raíz do projeto.
 
 ## Executando o projeto local:
 
@@ -19,7 +19,7 @@ Para fazer o build e execução da aplicação serão necessários:
 
 ## Setup inicial
 1. Com o postgress configurado, criar usuário, senha e uma database.
-2. Preencher as variáveis de ambiente conforme descrito no arquivo [.env.example](https://github.com/thiagomayrink/boardcamp/blob/main/.env.example)
+2. Preencher as variáveis de ambiente conforme descrito no arquivo [.env.example](https://github.com/thiagomayrink/boardcamp-api/blob/main/.env.example)
 3. Renomear o arquivo **.env.example** para **.env**
 
 ## Executando a aplicação local
